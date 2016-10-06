@@ -6,6 +6,7 @@
         <thead>
             <th>Editar</th>
             <th>Excluir</th>
+            <th>Autor</th>
             <th>Título</th>
             <th>Conteúdo</th>
         </thead>
@@ -18,6 +19,7 @@
                     <td>
                         <a href="{{ route("artigo.excluir", [ "id"=>$artigo->id ]) }}">Excluir</a>
                     </td>
+                    <td>{{ $artigo->User->name }}</td>
                     <td>{{ $artigo->titulo }}</td>
                     <td>{!! $artigo->conteudo !!}</td>
                 </tr>

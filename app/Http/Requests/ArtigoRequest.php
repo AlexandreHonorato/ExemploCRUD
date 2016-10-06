@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ArtigoRequest extends FormRequest
 {
@@ -27,4 +28,12 @@ class ArtigoRequest extends FormRequest
             "conteudo" => "required|string",
         ];
     }
+
+    public function except($keys){
+        $all = parent::except($keys);
+        $all["user_id"] =  Auth::user()->id;
+        return $all;
+    }
+
+
 }

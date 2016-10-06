@@ -18,12 +18,12 @@ class ArtigoController extends Controller {
             Artigo::updateOrCreate([ "id"=> ($request->exists("id") ? $request->get("id") : -1) ], $request->except("_token"));
             return Redirect::back()->with("success", "Artigo Adicionado com Sucesso!");
         }catch (\Exception $e){
-            return Redirect::back()->withErros(["Não foi possível adicionar um novo Artigo"]);
+            return Redirect::back()->withErrors(["Não foi possível adicionar um novo Artigo"]);
         }
     }
 
     public function getListar(){
-        $artigos = Artigo::all();
+        $artigos = Artigo::with("User")->get();
         return view("artigo.listar", compact("artigos"));
     }
 
